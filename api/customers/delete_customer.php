@@ -10,33 +10,23 @@
     include_once '../../config/database.php';
     include_once '../../models/Customers.php';
     include_once '../../helpers/helpers.php';
+    include_once '../../helpers/message_resource.php';
 
-    // Create db object
     $database = new Database();
     $db = $database->connect();
     $helper = new Helpers();
-
-
-    // Create customers object
     $customers = new Customers($db);
-
 
     // get posted data
     $data = json_decode(file_get_contents("php://input"));
 
-    if(!empty($data->customer_id)){
-    // set customer property values
-    $customers->customer_id = $data->customer_id;
- 
-    // create the customer
-    if($customers->delete_customer()){
-        echo $helper->response_json('200', 'INFO-MSG', 'Customer deleted.');
+    $customers->customer_id = isset($_GET['customer_id']) ? $_GET['customer_id'] : die();
+
+    if($customers->delete_customer())
+    {
+        echo $helper->response_json($HTTP_OK, $INFO_MESSAGE, 'Customer deleted.');
     }
-    // if any kind of error
-    else{
-        echo $helper->response_json('503', 'ERR-MSG', 'Could not delete customer.');
+    else
+    {
+        echo $helper->response_json($HTTP_BAD_REQUEST, $ERROR_MESSAGE, 'Customer not found');
     }
-   
-}else{
-    echo $helper->response_json('400', 'ERR-MSG', 'Id mandatory.');
-}

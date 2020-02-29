@@ -10,6 +10,7 @@
     include_once '../../config/database.php';
     include_once '../../models/Customers.php';
     include_once '../../helpers/helpers.php';
+    include_once '../../helpers/message_resource.php';
 
     // Create db object
     $database = new Database();
@@ -25,42 +26,38 @@
     // get posted data
     $data = json_decode(file_get_contents("php://input"));
 
-    if(
-        !empty($data->customer_id) &&
-        !empty($data->company_name) &&
-        !empty($data->contact_name) &&
-        !empty($data->contact_title) &&
-        !empty($data->address) &&
-        !empty($data->city) &&
-        !empty($data->region) &&
-        !empty($data->postal_code) &&
-        !empty($data->country) &&
-        !empty($data->phone) &&
-        !empty($data->fax)
-    ){
-    // set customers property values
-    $customers->customer_id = $data->customer_id;
-    $customers->company_name = $data->company_name;
-    $customers->contact_name = $data->contact_name;
-    $customers->contact_title = $data->contact_title;
-    $customers->address = $data->address;
-    $customers->city = $data->city;
-    $customers->region = $data->region;
-    $customers->postal_code = $data->postal_code;
-    $customers->country = $data->country;
-    $customers->phone = $data->phone;
-    $customers->fax = $data->fax;
- 
-    // create the customer
-    if($customers->update()){
-        echo $helper->response_json('200', 'INFO-MSG', 'Customer updated.');
-    }
-    // if any kind of error
-    else{
-        echo $helper->response_json('503', 'ERR-MSG', 'Could not update customer.');
-    }
-   
+    $required = array('customer_id', 'company_name', 'contact_name', 'contact_title', 'address', 'city', 'region', 'postal_code', 'country', 'phone', 'fax');
 
-}else{
-    echo $helper->response_json('400', 'ERR-MSG', 'Data incomplete. Make sure that all parameters are being sent.');
-}
+    $error = false;
+
+    //Validate that all required fields are not empty.
+    foreach($required as $field) 
+    {
+        if (empty($data->$field)) 
+        {
+          $error = true;
+        }
+    }
+      
+    if ($error) 
+    {
+        echo $helper->response_json($HTTP_BAD_REQUEST, $ERROR_MESSAGE, 'Data incomplete. Make sure that all parameters are being sent');
+    } 
+    else 
+    {
+        foreach ($data as $key => $value) 
+        {
+            // set customer property values
+            $customers->$key = $data->$key;
+        }
+        // create the customer
+        if($customers->update($required))
+        {
+            echo $helper->response_json($HTTP_OK, $INFO_MESSAGE, 'Customer was updated successfully.');
+        }
+        // if any kind of error
+        else
+        {
+            echo $helper->response_json($HTTP_SERVER_UNAVAILABLE, $ERROR_MESSAGE, 'Could not update customer.');
+        }
+    }
