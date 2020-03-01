@@ -36,6 +36,24 @@ class Customers{
         $stmt->bindParam(1, $this->customer_id);
         $stmt->execute();
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
+        if(count($row)!=0){
+            $this->customer_id = $row['customer_id'];
+            $this->company_name = $row['company_name'];
+            $this->contact_name = $row['contact_name'];
+            $this->contact_title = $row['contact_title'];
+            $this->address = $row['address'];
+            $this->city = $row['city'];
+            $this->region = $row['region'];
+            $this->postal_code = $row['postal_code'];
+            $this->country = $row['country'];
+            $this->phone = $row['phone'];
+            $this->fax = $row['fax'];
+            return TRUE;
+        }
+        else{
+            return FALSE;
+        }
+        /*
         $this->customer_id = $row['customer_id'];
         $this->company_name = $row['company_name'];
         $this->contact_name = $row['contact_name'];
@@ -47,6 +65,7 @@ class Customers{
         $this->country = $row['country'];
         $this->phone = $row['phone'];
         $this->fax = $row['fax'];
+        */
         //return $stmt;
     }
 
