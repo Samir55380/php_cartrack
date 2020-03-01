@@ -32,6 +32,4 @@
         'phone' => $customers->phone,
         'fax' => $customers->fax
     );
-    //array_push($customers_array, $customer);
-    //echo json_encode($customers_array);
     print_r(json_encode($customer));
