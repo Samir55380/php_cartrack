@@ -7,10 +7,10 @@
     header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
  
 
-    include_once '../../config/database.php';
-    include_once '../../models/Customers.php';
-    include_once '../../helpers/helpers.php';
-    include_once '../../helpers/message_resource.php';
+    include_once '../../../config/database.php';
+    include_once '../../../models/Customers.php';
+    include_once '../../../helpers/helpers.php';
+    include_once '../../../helpers/message_resource.php';
 
     $database = new Database();
     $db = $database->connect();

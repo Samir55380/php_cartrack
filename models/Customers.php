@@ -18,12 +18,40 @@ class Customers{
     public $phone;
     public $fax;
     
+
     public function __construct($db){
         $this->conn = $db;
     }
 
 
-    public function read(){
+    //The following functions should be separated from model class. However, as this is a small example of an api i've decided
+    //to create database functions at the same file as the model
+
+    public function get_one_customer(){
+        /**
+        * Returns one customers
+        */
+        $query = 'SELECT * From '  . $this->table .  ' WHERE customer_id = ?';
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(1, $this->customer_id);
+        $stmt->execute();
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+        $this->customer_id = $row['customer_id'];
+        $this->company_name = $row['company_name'];
+        $this->contact_name = $row['contact_name'];
+        $this->contact_title = $row['contact_title'];
+        $this->address = $row['address'];
+        $this->city = $row['city'];
+        $this->region = $row['region'];
+        $this->postal_code = $row['postal_code'];
+        $this->country = $row['country'];
+        $this->phone = $row['phone'];
+        $this->fax = $row['fax'];
+        //return $stmt;
+    }
+
+
+    public function get_customers(){
         /**
         * Returns all customers
         */
@@ -93,7 +121,6 @@ class Customers{
         /**
         * Deletes an customer
         */
-
         $query = 'DELETE FROM ' . $this->table . ' WHERE customer_id = :customer_id';
         $stmt = $this->conn->prepare($query);
         $this->customer_id=htmlspecialchars(strip_tags($this->customer_id));
