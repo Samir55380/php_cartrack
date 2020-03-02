@@ -149,7 +149,7 @@ The route for this endpoint is (HTTP Verb: Get): "http://machine_runnig_apache_i
 
 ### Get a specific customer
 
-The route for this endpoint is (HTTP Verb: Get): "http://machine_runnig_apache_ip:port/php-challenge/api/v1/customers/get_one_customer.php?customer_id='customer_id'"
+The route for this endpoint is (HTTP Verb: Get): " http://machine_runnig_apache_ip:port/php-challenge/api/v1/customers/get_one_customer.php?customer_id='customer_id' "
 
 Json response example in case no user with provided id was found:
 
@@ -163,7 +163,7 @@ Json response example in case no user with provided id was found:
 
 ### Delete a customer
 
-The route for this endpoint is (HTTP Verb: Delete): "http://machine_runnig_apache_ip:port/php-challenge/api/v1/customers/delete_customer.php?customer_id='customer_id'"
+The route for this endpoint is (HTTP Verb: Delete): " http://machine_runnig_apache_ip:port/php-challenge/api/v1/customers/delete_customer.php?customer_id='customer_id' "
 
 Json response example if customer was in fact deleted:
 
