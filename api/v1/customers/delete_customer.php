@@ -23,7 +23,6 @@
     $customers->customer_id = isset($_GET['customer_id']) ? $_GET['customer_id'] : die();
 
     $customers->get_one_customer();
-    $bool = $customers->get_one_customer();
     //Check if the customer id provided in fact exists
     if($customers->customer_id!=null)
     {

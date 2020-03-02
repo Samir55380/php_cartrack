@@ -8,6 +8,7 @@
 
 - If developer already has a environment created, just clone this repository to the document root folder.
 
+**NOTE: Before invoking api, ensure that root folder of the project name is php-challenge. If no, re-name folder.**
  
 
 # Api usage
@@ -32,9 +33,9 @@ This api contains 5 endpoints:
 
 ### Create new customer
 
-The route for this endpoint is: "http://machine_runnig_apache_ip:port/api/v1/customers/create_customer.php"
+The route for this endpoint is: "http://machine_runnig_apache_ip:port/php-challenge/api/v1/customers/create_customer.php"
 
-Json request example:
+Json request example (HTTP Verb: Post):
 
 ```json
 
@@ -88,9 +89,9 @@ Json response example if any of the mandatory field are is not provide in reques
 
 ### Update customer
 
-The route for this endpoint is: "http://machine_runnig_apache_ip:port/api/v1/customers/update_customer.php"
+The route for this endpoint is: "http://machine_runnig_apache_ip:port/php-challenge/api/v1/customers/update_customer.php"
 
-Json example:
+Json example (HTTP Verb: Patch):
 
 ```json
 
@@ -142,13 +143,13 @@ Json response example if any of the mandatory field are is not provide in reques
 
 ### Get all customers
 
-The route for this endpoint is: "http://machine_runnig_apache_ip:port/api/v1/customers/get_customers.php"
+The route for this endpoint is (HTTP Verb: Get): "http://machine_runnig_apache_ip:port/php-challenge/api/v1/customers/get_customers.php"
 
 
 
 ### Get a specific customer
 
-The route for this endpoint is: "http://machine_runnig_apache_ip:port/api/v1/customers/get_one_customer.php?customer_id='customer_id'"
+The route for this endpoint is (HTTP Verb: Get): "http://machine_runnig_apache_ip:port/php-challenge/api/v1/customers/get_one_customer.php?customer_id='customer_id'"
 
 Json response example in case no user with provided id was found:
 
@@ -162,7 +163,7 @@ Json response example in case no user with provided id was found:
 
 ### Delete a customer
 
-The route for this endpoint is: "http://machine_runnig_apache_ip:port/api/v1/customers/delete_customer.php?customer_id='customer_id'"
+The route for this endpoint is (HTTP Verb: Delete): "http://machine_runnig_apache_ip:port/php-challenge/api/v1/customers/delete_customer.php?customer_id='customer_id'"
 
 Json response example in customer was in fact deleted:
 

@@ -17,7 +17,6 @@
 
     $customers->customer_id = isset($_GET['customer_id']) ? $_GET['customer_id'] : die();
     $customers->get_one_customer();
-    $bool = $customers->get_one_customer();
     if($customers->customer_id!=null){
         $customer = array(
             'customer_id' => $customers->customer_id,

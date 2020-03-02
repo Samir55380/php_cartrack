@@ -50,6 +50,7 @@
             // set customer property values
             $customers->$key = $data->$key;
         }
+
         // create the customer
         if($customers->update($required))
         {
@@ -60,4 +61,6 @@
         {
             echo $helper->response_json($HTTP_SERVER_UNAVAILABLE, $ERROR_MESSAGE, 'Could not update customer.');
         }
+
+
     }

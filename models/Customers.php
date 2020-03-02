@@ -117,9 +117,9 @@ class Customers{
         }
         
         if($stmt->execute()){
-            return true;
+            return TRUE;
         }
-        return false;
+        return FALSE;
     }
 
 
