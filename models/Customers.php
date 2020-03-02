@@ -18,14 +18,15 @@ class Customers{
     public $phone;
     public $fax;
     
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    
+    //The following functions should be separated from model class. However, as this is a small example of an api i've decided
+    //to create database functions at the same file as the model
 
     public function __construct($db){
         $this->conn = $db;
     }
 
-
-    //The following functions should be separated from model class. However, as this is a small example of an api i've decided
-    //to create database functions at the same file as the model
 
     public function get_one_customer(){
         /**
@@ -53,20 +54,6 @@ class Customers{
         else{
             return FALSE;
         }
-        /*
-        $this->customer_id = $row['customer_id'];
-        $this->company_name = $row['company_name'];
-        $this->contact_name = $row['contact_name'];
-        $this->contact_title = $row['contact_title'];
-        $this->address = $row['address'];
-        $this->city = $row['city'];
-        $this->region = $row['region'];
-        $this->postal_code = $row['postal_code'];
-        $this->country = $row['country'];
-        $this->phone = $row['phone'];
-        $this->fax = $row['fax'];
-        */
-        //return $stmt;
     }
 
 

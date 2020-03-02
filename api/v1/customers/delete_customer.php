@@ -22,11 +22,19 @@
 
     $customers->customer_id = isset($_GET['customer_id']) ? $_GET['customer_id'] : die();
 
-    if($customers->delete_customer())
+    $customers->get_one_customer();
+    $bool = $customers->get_one_customer();
+    //Check if the customer id provided in fact exists
+    if($customers->customer_id!=null)
     {
-        echo $helper->response_json($HTTP_OK, $INFO_MESSAGE, 'Customer deleted.');
+        if($customers->delete_customer())
+        {
+            echo $helper->response_json($HTTP_OK, $INFO_MESSAGE, 'Customer deleted.');
+        }
+
     }
     else
     {
-        echo $helper->response_json($HTTP_BAD_REQUEST, $ERROR_MESSAGE, 'Customer not found');
+        echo $helper->response_json($HTTP_BAD_REQUEST, $ERROR_MESSAGE, 'No customers found with id provided.');
     }
+

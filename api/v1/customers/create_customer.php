@@ -51,7 +51,7 @@
         // if any kind of error
         else
         {
-            echo $helper->response_json($HTTP_SERVER_UNAVAILABLE, $ERROR_MESSAGE, 'Could not create customer.');
+            echo $helper->response_json($HTTP_SERVER_UNAVAILABLE, $ERROR_MESSAGE, 'Could not create customer. Try later.');
         }
     }
 

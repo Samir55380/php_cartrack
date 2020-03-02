@@ -35,6 +35,6 @@
         print_r(json_encode($customer));
     }
     else {
-        echo $helper->response_json($HTTP_OK, $ERROR_MESSAGE, 'No customers found.');
+        echo $helper->response_json($HTTP_OK, $ERROR_MESSAGE, 'No customers found with id provided.');
     }
 
