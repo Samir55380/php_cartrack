@@ -165,7 +165,7 @@ Json response example in case no user with provided id was found:
 
 The route for this endpoint is (HTTP Verb: Delete): "http://machine_runnig_apache_ip:port/php-challenge/api/v1/customers/delete_customer.php?customer_id='customer_id'"
 
-Json response example in customer was in fact deleted:
+Json response example if customer was in fact deleted:
 
 ```json
 
